@@ -9,5 +9,6 @@ djoser
 djangorestframework-simplejwt
 celery
 python-dotenv
+python-slugify
 
 gunicorn

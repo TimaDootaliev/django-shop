@@ -1,0 +1,7 @@
+venv/
+data/
+media/
+.git
+__pycache__/
+local_settings/
+db.sqlite3

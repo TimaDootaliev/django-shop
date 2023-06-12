@@ -27,8 +27,6 @@ BASE_DIR = Path(__file__).resolve().parent.parent.parent
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.getenv("SECRET_KEY")
 
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
 
 # Application definition
 
@@ -45,13 +43,17 @@ INSTALLED_APPS = [
     "rest_framework",
     "djoser",
     "rest_framework_simplejwt",
+    "corsheaders",
+
+    # custom apps
     "applications.category",
-    "applications.product",
+    "applications.products",
     "applications.reviews",
 ]
 
 
 MIDDLEWARE = [
+    "corsheaders.middleware.CorsMiddleware",
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
@@ -129,16 +131,30 @@ SIMPLE_JWT = {
     "USER_ID_CLAIM": "user_id",
 }
 
-DJOSER = {
-    "PASSWORD_RESET_CONFIRM_URL": "/password/reset/confirm/?uid={uid}&token={token}",
-    "USERNAME_RESET_CONFIRM_URL": "/username/reset/confirm/?uid={uid}&token={token}",
-    "ACTIVATION_URL": "/activate/?uid={uid}&token={token}",
-    "SEND_ACTIVATION_EMAIL": True,
-}
-
 
 EMAIL_HOST = os.getenv("EMAIL_HOST")
 EMAIL_HOST_USER = os.getenv("EMAIL_USER")
 EMAIL_HOST_PASSWORD = os.getenv("EMAIL_PASSWORD")
 EMAIL_PORT = os.getenv("EMAIL_PORT")
 EMAIL_USE_TLS = os.getenv("USE_TLS", True)
+
+
+DJOSER = {
+    "PASSWORD_RESET_CONFIRM_URL": "password/reset/confirm/?uid={uid}&token={token}",
+    "USERNAME_RESET_CONFIRM_URL": "username/reset/confirm/?uid={uid}&token={token}",
+    "ACTIVATION_URL": "activate/?uid={uid}&token={token}",
+    "SEND_ACTIVATION_EMAIL": True,
+}
+
+SWAGGER_SETTINGS = {
+   'SECURITY_DEFINITIONS': {
+      'Bearer': {
+            'type': 'apiKey',
+            'name': 'Authorization',
+            'in': 'header'
+      }
+   },
+   'USE_SESSION_AUTH': False
+}
+
+CORS_ALLOW_ALL_ORIGINS: bool = True

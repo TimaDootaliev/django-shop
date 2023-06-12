@@ -1,10 +1,10 @@
 import os
 
 from .settings import *  # noqa
-from dotenv import load_dotenv
 
+print('PRODUCTION SETTINGS ARE USING')
 
-load_dotenv()
+DEBUG = False
 
 
 DATABASES = {
