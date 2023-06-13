@@ -34,7 +34,9 @@ def store_pre_save(sender, instance: Product, *args, **kwargs):
 
 
 class ProductImage(models.Model):
-    product_id = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='images')
+    product_id = models.ForeignKey(
+        Product, on_delete=models.CASCADE, related_name="images"
+    )
     image = models.ImageField(upload_to="product-images")
 
     def __str__(self):

@@ -9,11 +9,14 @@ ENV PYTHONUNBUFFERED 1
 WORKDIR /code
 
 # Устанавливаем зависимости через pip
-COPY requirements/requirements-dev.txt /code/
-RUN pip install --no-cache-dir -r requirements-dev.txt
+COPY requirements/requirements-prod.txt /code/
+RUN pip install --no-cache-dir -r requirements-prod.txt
 
 # Копируем файлы проекта в рабочую директорию контейнера
 COPY . /code/
 
 RUN python manage.py migrate
 RUN python manage.py collectstatic --no-input
+
+# CMD ["gunicorn", "-w", "3", "-b", "0.0.0.0:8000", "core.wsgi"]
+# CMD ["python3", "manage.py", "runserver", "0.0.0.0:8000"]

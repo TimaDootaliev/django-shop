@@ -14,7 +14,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    command: python manage.py runserver 0.0.0.0:8000
+    command: ["gunicorn", "-w", "3", "-b", "0.0.0.0:8000", "core.wsgi:application"]
     volumes:
       - .:/code
     expose:
@@ -25,6 +25,7 @@ services:
       - celery-worker
     env_file:
       - .prod.env
+    restart: always
 
   redis:
     image: redis
@@ -39,6 +40,9 @@ services:
     depends_on:
       - db
       - redis
+    env_file:
+    - .prod.env
+    restart: always
     
   nginx:
     image: nginx
@@ -50,3 +54,4 @@ services:
       - 80:80
     depends_on:
       - web
+

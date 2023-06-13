@@ -44,7 +44,6 @@ INSTALLED_APPS = [
     "djoser",
     "rest_framework_simplejwt",
     "corsheaders",
-
     # custom apps
     "applications.category",
     "applications.products",
@@ -147,14 +146,14 @@ DJOSER = {
 }
 
 SWAGGER_SETTINGS = {
-   'SECURITY_DEFINITIONS': {
-      'Bearer': {
-            'type': 'apiKey',
-            'name': 'Authorization',
-            'in': 'header'
-      }
-   },
-   'USE_SESSION_AUTH': False
+    "SECURITY_DEFINITIONS": {
+        "Bearer": {"type": "apiKey", "name": "Authorization", "in": "header"}
+    },
+    "USE_SESSION_AUTH": False,
 }
 
 CORS_ALLOW_ALL_ORIGINS: bool = True
+
+
+CELERY_BROKER_URL = os.getenv("CELERY_URL")
+CELERY_RESULT_BACKEND = os.getenv("CELERY_URL")

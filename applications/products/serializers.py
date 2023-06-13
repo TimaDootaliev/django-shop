@@ -10,9 +10,7 @@ class ProductImageSerializer(serializers.ModelSerializer):
 
 class ProductSerializer(serializers.ModelSerializer):
     images = serializers.ListField(
-        child=serializers.ImageField(),
-        write_only=True,
-        required=False
+        child=serializers.ImageField(), write_only=True, required=False
     )
 
     class Meta:
@@ -30,8 +28,8 @@ class ProductSerializer(serializers.ModelSerializer):
         }
 
     def create(self, validated_data: dict):
-        validated_data['user'] = self.context['request'].user
-        imgs = validated_data.pop('images', None)
+        validated_data["user"] = self.context["request"].user
+        imgs = validated_data.pop("images", None)
         product = Product.objects.create(**validated_data)
         if imgs is not None:
             images = []
@@ -39,9 +37,10 @@ class ProductSerializer(serializers.ModelSerializer):
                 images.append(ProductImage(product_id=product, image=image))
             ProductImage.objects.bulk_create(images)
         return product
-    
 
     def to_representation(self, instance):
         representation = super().to_representation(instance)
-        representation['images'] = ProductImageSerializer(instance.images.all(), many=True).data
+        representation["images"] = ProductImageSerializer(
+            instance.images.all(), many=True
+        ).data
         return representation

@@ -2,7 +2,7 @@ import os
 
 from .settings import *  # noqa
 
-print('PRODUCTION SETTINGS ARE USING')
+print("PRODUCTION SETTINGS ARE USING")
 
 DEBUG = False
 

@@ -16,8 +16,8 @@ class ProductViewSet(ModelViewSet):
     permission_classes = [IsAuthenticatedOrReadOnly]
 
 
-
 from djoser.views import UserViewSet
+
 
 class UserSet(UserViewSet):
     def activation(self, request, *args, **kwargs):

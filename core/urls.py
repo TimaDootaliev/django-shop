@@ -23,19 +23,19 @@ from drf_yasg import openapi
 
 
 schema_view = get_schema_view(
-   openapi.Info(
-      title="Shop API",
-      default_version='v1',
-      description="Shop API Python 28",
-   ),
-   public=True,
-   permission_classes=[permissions.AllowAny],
+    openapi.Info(
+        title="Shop API",
+        default_version="v1",
+        description="Shop API Python 28",
+    ),
+    public=True,
+    permission_classes=[permissions.AllowAny],
 )
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path('api/v1/', include('applications.products.urls')),
-    path('', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
+    path("api/v1/", include("applications.products.urls")),
+    path("", schema_view.with_ui("swagger", cache_timeout=0), name="schema-swagger-ui"),
     re_path(r"^auth/", include("djoser.urls.jwt")),
     re_path(r"^auth/", include("djoser.urls")),
 ]

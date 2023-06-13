@@ -3,5 +3,5 @@ data/
 media/
 .git
 __pycache__/
-local_settings/
+local_settings.py
 db.sqlite3
