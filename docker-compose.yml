@@ -2,7 +2,7 @@ version: '3'
 
 services:
   db:
-    image: postgres
+    image: postgres:14.8
     environment:
       POSTGRES_DB: postgres
       POSTGRES_USER: postgres
@@ -28,7 +28,7 @@ services:
     restart: always
 
   redis:
-    image: redis
+    image: redis:7.0.11
 
   celery-worker:
     build:
@@ -45,7 +45,7 @@ services:
     restart: always
     
   nginx:
-    image: nginx
+    image: nginx:1.25.0
     volumes:
       - ./deployment/nginx/conf.d:/etc/nginx/conf.d
       - ./static:/code/static
@@ -54,4 +54,3 @@ services:
       - 80:80
     depends_on:
       - web
-
