@@ -24,7 +24,7 @@ services:
       - redis
       - celery-worker
     env_file:
-      - .prod.env
+      - .env.prod
     restart: always
 
   redis:
@@ -41,11 +41,11 @@ services:
       - db
       - redis
     env_file:
-    - .prod.env
+    - .env.prod
     restart: always
     
   nginx:
-    image: nginx:1.25.0
+    image: nginx
     volumes:
       - ./deployment/nginx/conf.d:/etc/nginx/conf.d
       - ./static:/code/static

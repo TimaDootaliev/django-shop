@@ -20,7 +20,8 @@ class ProductSerializer(serializers.ModelSerializer):
             "user", "slug", "title",
             "description", "main_image",
             "price", "created_at", "updated_at",
-            'images',
+            'quantity', 'in_stock', 'category',
+            'images'
         ]
         extra_kwargs = {
             'user': {'read_only': True},

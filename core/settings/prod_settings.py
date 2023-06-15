@@ -4,7 +4,7 @@ from .settings import *  # noqa
 
 print("PRODUCTION SETTINGS ARE USING")
 
-DEBUG = False
+DEBUG = True
 
 
 DATABASES = {

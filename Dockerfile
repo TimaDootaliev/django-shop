@@ -14,9 +14,3 @@ RUN pip install --no-cache-dir -r requirements-prod.txt
 
 # Копируем файлы проекта в рабочую директорию контейнера
 COPY . /code/
-
-RUN python manage.py migrate
-RUN python manage.py collectstatic --no-input
-
-# CMD ["gunicorn", "-w", "3", "-b", "0.0.0.0:8000", "core.wsgi"]
-# CMD ["python3", "manage.py", "runserver", "0.0.0.0:8000"]
