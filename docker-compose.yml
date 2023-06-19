@@ -2,7 +2,7 @@ version: '3'
 
 services:
   db:
-    image: postgres:14.8
+    image: postgres:14.8-alpine3.18 
     environment:
       POSTGRES_DB: postgres
       POSTGRES_USER: postgres
@@ -28,7 +28,7 @@ services:
     restart: always
 
   redis:
-    image: redis:7.0.11
+    image: redis:7.0.11-alpine
 
   celery-worker:
     build:

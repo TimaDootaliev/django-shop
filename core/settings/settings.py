@@ -161,5 +161,3 @@ CORS_ALLOW_ALL_ORIGINS: bool = True
 
 CELERY_BROKER_URL = os.getenv("CELERY_URL")
 CELERY_RESULT_BACKEND = os.getenv("CELERY_URL")
-
-print(os.getenv("AAA"))

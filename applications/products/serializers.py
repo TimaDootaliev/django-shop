@@ -18,10 +18,9 @@ class ProductSerializer(serializers.ModelSerializer):
         # fmt: off
         fields = [
             "user", "slug", "title",
-            "description", "main_image",
-            "price", "created_at", "updated_at",
-            'quantity', 'in_stock', 'category',
-            'images'
+            "description", "price", "created_at",
+            "updated_at", 'quantity', 'in_stock',
+            'category', 'images'
         ]
         extra_kwargs = {
             'user': {'read_only': True},

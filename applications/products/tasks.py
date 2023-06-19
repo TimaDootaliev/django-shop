@@ -8,8 +8,7 @@ User = get_user_model()
 
 @shared_task
 def send_email():
-    emails = User.objects.values_list('email', flat=True)
+    emails = User.objects.values_list("email", flat=True)
     return send_mail(
-        subject="New product!",
-        message="Hello! There is new product on site! Go Get it"
+        subject="New product!", message="Hello! There is new product on site! Go Get it"
     )
